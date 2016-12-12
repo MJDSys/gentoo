@@ -12,7 +12,7 @@ SRC_URI="http://dev.libqxt.org/libqxt/get/v${PV}.tar.bz2 -> ${P}.tar.bz2"
 
 LICENSE="|| ( CPL-1.0 LGPL-2.1 )"
 SLOT="0"
-KEYWORDS="amd64 ~arm x86"
+KEYWORDS="~amd64 ~arm ~x86"
 IUSE="berkdb debug doc sql web xscreensaver zeroconf"
 
 COMMON_DEPEND="
@@ -20,7 +20,7 @@ COMMON_DEPEND="
 	dev-qt/qtcore:4[ssl]
 	dev-qt/qtgui:4
 	x11-libs/libXrandr
-	berkdb? ( >=sys-libs/db-4.6 )
+	berkdb? ( >=sys-libs/db-4.6:* )
 	sql? ( dev-qt/qtsql:4 )
 	zeroconf? ( net-dns/avahi[mdnsresponder-compat] )
 "
@@ -39,6 +39,7 @@ PATCHES=(
 	"${FILESDIR}/${PN}-invoke-prev-filter.patch"	# bug 494448
 	"${FILESDIR}/${PN}-media-keys.patch"		# bug 495984
 	"${FILESDIR}/${PN}-xrandr-missing-lib.patch"
+	"${FILESDIR}/${PN}-gcc6-fix.patch"
 )
 
 src_prepare() {
